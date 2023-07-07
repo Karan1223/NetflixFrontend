@@ -28,7 +28,7 @@ const Card = ({movieData,isLiked=false}) => {
 
     const addToList = async() => {
       try {
-        const response = await axios.post("http://localhost:5000/api/user/add",{email,data:movieData})
+        const response = await axios.post("https://backendmovieflix.onrender.com/api/user/add",{email,data:movieData})
         if (response.data.msg === 'Movie already added to the list.') {
           setAlreadyExists(true); // Set alreadyExists to true when movie already exists
         } else {
@@ -55,7 +55,14 @@ const Card = ({movieData,isLiked=false}) => {
     const movieNameIdArray = useMemo(() => {
         return [
           { name: 'Extraction 2', id: 'Y274jZs5s7s' },
-          { name: 'Movie 2', id: '1234567890' },
+          { name: 'Spider-Man: Across the Spider-Verse', id: 'shW9i6k8cB0' },
+          { name: 'Fast X', id: 'eoOaKN4qCKw' },
+          { name: 'Indiana Jones and the Dial of Destiny', id: 'eQfMbSe7F2g' },
+          { name: 'Secret Invasion', id: 'Tp_YZNqNBhw' },
+          { name: 'The Witcher', id: 'SzS8Ao0H6Co' },
+          { name: 'The Flash', id: 'jprhe-cWKGs' },
+          
+
           // Add more movie names and IDs as needed
         ];
       }, []);
