@@ -29,7 +29,7 @@ const Movies = () => {
 
     dispatch(fetchMovies({type: "movie"}))
     
-  },[]);
+  },[dispatch]);
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset===0 ? false : true);

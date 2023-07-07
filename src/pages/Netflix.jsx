@@ -15,7 +15,7 @@ const Netflix = () => {
   const navigate = useNavigate()
   const [isScrolled, setIsScrolled] = useState(false)
 
-  const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
+
   const movies = useSelector((state) => state.netflix.movies);
   const dispatch = useDispatch();
 
@@ -35,7 +35,7 @@ const Netflix = () => {
     
       dispatch(fetchMovies({type: "all"}))
     
-  },[]);
+  },[dispatch]);
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset===0 ? false : true);

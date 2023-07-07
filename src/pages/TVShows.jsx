@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+
 import { fetchMovies, getGenres } from '../store';
 import { firebaseAuth } from '../utils/firebase-config';
 import { onAuthStateChanged } from 'firebase/auth';
@@ -12,10 +12,10 @@ import SelectGenre from '../components/SelectGenre';
 
 const TVShows = () => {
     
-  const navigate = useNavigate()
+
   const [isScrolled, setIsScrolled] = useState(false)
 
-  const genresLoaded = useSelector((state) => state.netflix.genresLoaded);
+
   const movies = useSelector((state) => state.netflix.movies);
   const genres = useSelector((state) => state.netflix.genres);
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const TVShows = () => {
     
       dispatch(fetchMovies({type: "tv"}))
     
-  },[]);
+  },[dispatch]);
 
   window.onscroll = () => {
     setIsScrolled(window.pageYOffset===0 ? false : true);
