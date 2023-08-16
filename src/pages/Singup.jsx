@@ -14,12 +14,20 @@ const Singup = () => {
       email: "",
       password: ""
     })
+  
+    const [signupError, setSignupError] = useState(null); // State for error handling
+  
 
     const handleSignIn = async () => {
       try {
         const { email, password} = formValues;
         await createUserWithEmailAndPassword(firebaseAuth, email, password)
+
+        setSignupError(null); // Clear any previous errors
+        navigate("/login");
+
       } catch (error) {
+        setSignupError(error.message);
         console.log(error)
         
       }
@@ -47,11 +55,15 @@ const Singup = () => {
                   value={formValues.password} 
                   onChange={(e) => setFormValues({...formValues,[e.target.name]:e.target.value})}/>
                 )}
+               
                 { !showPassword && (
                   <button onClick={() => setShowPassword(true)}>Get Started</button>
                 )}
             </div>
               <button onClick={handleSignIn}>Sign Up</button>
+              {signupError && (
+            <p className="error-message">{signupError}</p>
+          )}
         </div>
         </div>
     </Container>
@@ -95,6 +107,12 @@ position: relative;
         &:focus{
           outline: none;
         }
+      }
+      .success-message {
+        /* Styles for the success message */
+        text-align: center;
+        color: green;
+        margin-bottom: 1rem;
       }
       button{
         padding: 0.1rem 0.5rem;
